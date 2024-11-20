@@ -20,8 +20,11 @@ namespace DevCreedPractical1.Models
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Post>().Ignore(p => p.SubPosts);
-
             modelBuilder.Entity<Post>().ToTable("TablePosts", schema: "Blogging");
+            modelBuilder.Entity<Post>().Property(p => p.Name).IsRequired();
+            modelBuilder.Entity<Post>().Property(p => p.Content).IsRequired();
+            modelBuilder.Entity<Post>().Ignore(p => p.ExcludedProp);
+            modelBuilder.Entity<Post>().Property(p => p.Name).HasColumnName("Title");
             base.OnModelCreating(modelBuilder);
         }
     }

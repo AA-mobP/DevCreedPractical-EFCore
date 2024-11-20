@@ -12,8 +12,10 @@ namespace DevCreedPractical1.Models
     internal class Blog
     {
         public int Id { get; set; }
-        [Required]
+        [Required, Column("Blog_Url")]
         public string Url { get; set; }
+        [NotMapped]
+        public string ExcludedProp { get; set; }
         public List<Post> Posts { get; set; }
     }
 }

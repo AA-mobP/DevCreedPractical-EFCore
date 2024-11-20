@@ -10,10 +10,10 @@ namespace DevCreedPractical1.Models
     internal class Post
     {
         public int Id { get; set; }
-        [Required]
         public string Name { get; set; }
-        [Required]
         public string Content { get; set; }
+        public string ExcludedProp { get; set; }
+
         public Blog Blog { get; set; }
         public List<SubPost> SubPosts { get; set; }
     }
