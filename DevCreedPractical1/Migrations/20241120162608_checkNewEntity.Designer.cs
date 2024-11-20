@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DevCreedPractical1.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20241120162228_AddNewEntity")]
-    partial class AddNewEntity
+    [Migration("20241120162608_checkNewEntity")]
+    partial class checkNewEntity
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -67,32 +67,6 @@ namespace DevCreedPractical1.Migrations
                     b.ToTable("tblPosts");
                 });
 
-            modelBuilder.Entity("DevCreedPractical1.Models.SubPost", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Content")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("PostId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("PostId");
-
-                    b.ToTable("tblSubPosts");
-                });
-
             modelBuilder.Entity("DevCreedPractical1.Models.Post", b =>
                 {
                     b.HasOne("DevCreedPractical1.Models.Blog", "Blog")
@@ -104,25 +78,9 @@ namespace DevCreedPractical1.Migrations
                     b.Navigation("Blog");
                 });
 
-            modelBuilder.Entity("DevCreedPractical1.Models.SubPost", b =>
-                {
-                    b.HasOne("DevCreedPractical1.Models.Post", "Post")
-                        .WithMany("SubPosts")
-                        .HasForeignKey("PostId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Post");
-                });
-
             modelBuilder.Entity("DevCreedPractical1.Models.Blog", b =>
                 {
                     b.Navigation("Posts");
-                });
-
-            modelBuilder.Entity("DevCreedPractical1.Models.Post", b =>
-                {
-                    b.Navigation("SubPosts");
                 });
 #pragma warning restore 612, 618
         }
