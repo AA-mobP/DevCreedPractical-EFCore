@@ -11,7 +11,6 @@ namespace DevCreedPractical1.Models
     {
         public DbSet<Blog> tblBlogs { get; set; }
         public DbSet<Post> tblPosts { get; set; }
-        public DbSet<SubPost> tblSubPosts { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlServer("Data Source=DESKTOP-ECE5S76\\SQL2022;Initial Catalog=DevCreedPracticalEFCore;Integrated Security=True;Encrypt=False;Trust Server Certificate=True");
@@ -20,7 +19,9 @@ namespace DevCreedPractical1.Models
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<SubPost>().ToTable("tblSubPosts", s => s.ExcludeFromMigrations());
+            modelBuilder.Entity<Post>().Ignore(p => p.SubPosts);
+
+            modelBuilder.Entity<Post>().ToTable("TablePosts", schema: "Blogging");
             base.OnModelCreating(modelBuilder);
         }
     }
