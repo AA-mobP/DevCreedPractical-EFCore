@@ -12,7 +12,7 @@ namespace DevCreedPractical1.Models
     internal class Blog
     {
         public int Id { get; set; }
-        [Required, Column("Blog_Url")]
+        [Required, Column("Blog_Url", TypeName = "NVARCHAR(50)")]
         public string Url { get; set; }
         [NotMapped]
         public string ExcludedProp { get; set; }

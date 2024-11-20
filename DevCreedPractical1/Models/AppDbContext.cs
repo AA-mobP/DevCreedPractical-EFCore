@@ -21,10 +21,17 @@ namespace DevCreedPractical1.Models
         {
             modelBuilder.Entity<Post>().Ignore(p => p.SubPosts);
             modelBuilder.Entity<Post>().ToTable("TablePosts", schema: "Blogging");
-            modelBuilder.Entity<Post>().Property(p => p.Name).IsRequired();
-            modelBuilder.Entity<Post>().Property(p => p.Content).IsRequired();
             modelBuilder.Entity<Post>().Ignore(p => p.ExcludedProp);
-            modelBuilder.Entity<Post>().Property(p => p.Name).HasColumnName("Title");
+            modelBuilder.Entity<Post>(options =>
+            {
+                options.Property(p => p.Name).IsRequired();
+                options.Property(p => p.Content).IsRequired();
+
+                options.Property(p => p.Name).HasColumnName("Title");
+
+                options.Property(p => p.Name).HasColumnType("NVARCHAR(50)");
+                options.Property(p => p.Content).HasColumnType("NVARCHAR(500)");
+            });
             base.OnModelCreating(modelBuilder);
         }
     }
