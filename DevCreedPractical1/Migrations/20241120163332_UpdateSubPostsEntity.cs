@@ -5,7 +5,7 @@
 namespace DevCreedPractical1.Migrations
 {
     /// <inheritdoc />
-    public partial class checkNewEntity : Migration
+    public partial class UpdateSubPostsEntity : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
