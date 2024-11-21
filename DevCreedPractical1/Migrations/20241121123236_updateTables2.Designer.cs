@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DevCreedPractical1.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20241121122917_updateTables2")]
+    [Migration("20241121123236_updateTables2")]
     partial class updateTables2
     {
         /// <inheritdoc />
@@ -63,11 +63,11 @@ namespace DevCreedPractical1.Migrations
 
             modelBuilder.Entity("DevCreedPractical1.Models.ForTest", b =>
                 {
-                    b.Property<short>("Id")
+                    b.Property<byte>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("smallint");
+                        .HasColumnType("tinyint");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<short>("Id"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<byte>("Id"));
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -80,9 +80,12 @@ namespace DevCreedPractical1.Migrations
 
             modelBuilder.Entity("DevCreedPractical1.Models.Post", b =>
                 {
-                    b.Property<byte>("Post_Id")
-                        .HasColumnType("tinyint")
+                    b.Property<int>("Post_Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
                         .HasComment("this is the primary key");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Post_Id"));
 
                     b.Property<int>("Blog_Id")
                         .HasColumnType("int");

@@ -51,6 +51,8 @@ namespace DevCreedPractical1.Models
             });
 
             modelBuilder.Entity<BookmarkedPosts>().HasKey(b => new { b.FirstId, b.SecondId });
+
+            modelBuilder.Entity<ForTest>().Property(f => f.Id).ValueGeneratedOnAdd();
         }
     }
 }

@@ -8,7 +8,7 @@ namespace DevCreedPractical1.Models
 {
     internal class ForTest
     {
-        public short Id { get; set; }
+        public byte Id { get; set; }
         public string Name { get; set; }
     }
 }
