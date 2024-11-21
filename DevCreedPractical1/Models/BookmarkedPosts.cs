@@ -7,7 +7,6 @@ using System.Threading.Tasks;
 
 namespace DevCreedPractical1.Models
 {
-    [PrimaryKey("FirstId", "SecondId")]
     internal class BookmarkedPosts
     {
         public int FirstId { get; set; }

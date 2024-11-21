@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DevCreedPractical1.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20241121115125_AddNewTableWithTwoPrimaryKeys")]
+    [Migration("20241121115555_AddNewTableWithTwoPrimaryKeys")]
     partial class AddNewTableWithTwoPrimaryKeys
     {
         /// <inheritdoc />
