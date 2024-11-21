@@ -42,7 +42,7 @@ namespace DevCreedPractical1.Models
                 options.Property(p => p.ExcludedProp).HasMaxLength(50);
 
                 options.Property(p => p.Name).HasDefaultValue("Post Name");
-                options.Property(p => p.Content).HasDefaultValueSql("CONCAT([Title], '`s Content')");
+                options.Property(p => p.Content).HasDefaultValueSql("CONCAT('Content created in', GETDATE())");
 
                 options.Property(p => p.ComputedProp).HasComputedColumnSql("'title is: ' + [Title] + ', ' + 'content is: ' + [Content]");
 

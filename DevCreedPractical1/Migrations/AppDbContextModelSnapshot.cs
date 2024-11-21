@@ -80,7 +80,7 @@ namespace DevCreedPractical1.Migrations
                         .IsRequired()
                         .ValueGeneratedOnAdd()
                         .HasColumnType("NVARCHAR(500)")
-                        .HasDefaultValueSql("CONCAT([Title], '`s Content')");
+                        .HasDefaultValueSql("CONCAT('Content created in', GETDATE())");
 
                     b.Property<string>("ExcludedProp")
                         .IsRequired()

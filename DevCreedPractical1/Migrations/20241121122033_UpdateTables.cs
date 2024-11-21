@@ -66,7 +66,7 @@ namespace DevCreedPractical1.Migrations
                 table: "TablePosts",
                 type: "NVARCHAR(500)",
                 nullable: false,
-                defaultValueSql: "CONCAT([Title], '`s Content')",
+                defaultValueSql: "CONCAT('Content created in', GETDATE())",
                 oldClrType: typeof(string),
                 oldType: "nvarchar(max)");
 
@@ -235,7 +235,7 @@ namespace DevCreedPractical1.Migrations
                 nullable: false,
                 oldClrType: typeof(string),
                 oldType: "NVARCHAR(500)",
-                oldDefaultValueSql: "CONCAT([Title], '`s Content')");
+                oldDefaultValueSql: "CONCAT('Content created in', GETDATE())");
 
             migrationBuilder.AlterColumn<string>(
                 name: "Name",

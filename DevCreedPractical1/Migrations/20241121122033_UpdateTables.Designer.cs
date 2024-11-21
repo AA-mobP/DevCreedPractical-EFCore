@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DevCreedPractical1.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20241121121209_UpdateTables")]
+    [Migration("20241121122033_UpdateTables")]
     partial class UpdateTables
     {
         /// <inheritdoc />
@@ -83,7 +83,7 @@ namespace DevCreedPractical1.Migrations
                         .IsRequired()
                         .ValueGeneratedOnAdd()
                         .HasColumnType("NVARCHAR(500)")
-                        .HasDefaultValueSql("CONCAT([Title], '`s Content')");
+                        .HasDefaultValueSql("CONCAT('Content created in', GETDATE())");
 
                     b.Property<string>("ExcludedProp")
                         .IsRequired()
