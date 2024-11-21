@@ -19,18 +19,29 @@ namespace DevCreedPractical1.Models
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Blog>(options =>
+            {
+                options.HasKey(p => p.Blog_Id).HasName("PK_BlogId");
+            });
+
             modelBuilder.Entity<Post>().Ignore(p => p.SubPosts);
             modelBuilder.Entity<Post>().ToTable("TablePosts", schema: "Blogging");
             modelBuilder.Entity<Post>().Ignore(p => p.ExcludedProp);
             modelBuilder.Entity<Post>(options =>
             {
+                options.HasKey(p => p.Post_Id).HasName("PK_PostId");
+
                 options.Property(p => p.Name).IsRequired();
                 options.Property(p => p.Content).IsRequired();
 
-                options.Property(p => p.Name).HasColumnName("Title");
-
                 options.Property(p => p.Name).HasColumnType("NVARCHAR(50)");
                 options.Property(p => p.Content).HasColumnType("NVARCHAR(500)");
+
+                options.Property(p => p.Name).HasColumnName("Title");
+
+                options.Property(p => p.ExcludedProp).HasMaxLength(50);
+
+                options.Property(p => p.Post_Id).HasComment("this is the primary key");
             });
             base.OnModelCreating(modelBuilder);
         }
