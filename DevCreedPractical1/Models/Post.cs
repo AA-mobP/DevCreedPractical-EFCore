@@ -13,7 +13,7 @@ namespace DevCreedPractical1.Models
         public string Name { get; set; }
         public string Content { get; set; }
         public string ExcludedProp { get; set; }
-
+        public string ComputedProp { get; set; }
         public Blog Blog { get; set; }
         public List<SubPost> SubPosts { get; set; }
     }

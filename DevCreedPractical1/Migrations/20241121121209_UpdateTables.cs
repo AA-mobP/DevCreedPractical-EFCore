@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace DevCreedPractical1.Migrations
 {
     /// <inheritdoc />
-    public partial class AddNewTableWithTwoPrimaryKeys : Migration
+    public partial class UpdateTables : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -66,6 +66,7 @@ namespace DevCreedPractical1.Migrations
                 table: "TablePosts",
                 type: "NVARCHAR(500)",
                 nullable: false,
+                defaultValueSql: "CONCAT([Title], '`s Content')",
                 oldClrType: typeof(string),
                 oldType: "nvarchar(max)");
 
@@ -75,6 +76,7 @@ namespace DevCreedPractical1.Migrations
                 table: "TablePosts",
                 type: "NVARCHAR(50)",
                 nullable: false,
+                defaultValue: "Post Name",
                 oldClrType: typeof(string),
                 oldType: "nvarchar(max)");
 
@@ -115,6 +117,14 @@ namespace DevCreedPractical1.Migrations
                 defaultValue: 0,
                 comment: "this is the primary key")
                 .Annotation("SqlServer:Identity", "1, 1");
+
+            migrationBuilder.AddColumn<string>(
+                name: "ComputedProp",
+                schema: "Blogging",
+                table: "TablePosts",
+                type: "nvarchar(max)",
+                nullable: false,
+                computedColumnSql: "'title is: ' + [Title] + ', ' + 'content is: ' + [Content]");
 
             migrationBuilder.AddPrimaryKey(
                 name: "PK_PostId",
@@ -174,6 +184,11 @@ namespace DevCreedPractical1.Migrations
                 table: "TableBlogs");
 
             migrationBuilder.DropColumn(
+                name: "ComputedProp",
+                schema: "Blogging",
+                table: "TablePosts");
+
+            migrationBuilder.DropColumn(
                 name: "Post_Id",
                 schema: "Blogging",
                 table: "TablePosts");
@@ -219,7 +234,8 @@ namespace DevCreedPractical1.Migrations
                 type: "nvarchar(max)",
                 nullable: false,
                 oldClrType: typeof(string),
-                oldType: "NVARCHAR(500)");
+                oldType: "NVARCHAR(500)",
+                oldDefaultValueSql: "CONCAT([Title], '`s Content')");
 
             migrationBuilder.AlterColumn<string>(
                 name: "Name",
@@ -228,7 +244,8 @@ namespace DevCreedPractical1.Migrations
                 type: "nvarchar(max)",
                 nullable: false,
                 oldClrType: typeof(string),
-                oldType: "NVARCHAR(50)");
+                oldType: "NVARCHAR(50)",
+                oldDefaultValue: "Post Name");
 
             migrationBuilder.AddColumn<int>(
                 name: "Id",

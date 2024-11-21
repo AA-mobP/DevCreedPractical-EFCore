@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DevCreedPractical1.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20241121115555_AddNewTableWithTwoPrimaryKeys")]
-    partial class AddNewTableWithTwoPrimaryKeys
+    [Migration("20241121121209_UpdateTables")]
+    partial class UpdateTables
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -73,9 +73,17 @@ namespace DevCreedPractical1.Migrations
                     b.Property<int>("Blog_Id")
                         .HasColumnType("int");
 
+                    b.Property<string>("ComputedProp")
+                        .IsRequired()
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("nvarchar(max)")
+                        .HasComputedColumnSql("'title is: ' + [Title] + ', ' + 'content is: ' + [Content]");
+
                     b.Property<string>("Content")
                         .IsRequired()
-                        .HasColumnType("NVARCHAR(500)");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("NVARCHAR(500)")
+                        .HasDefaultValueSql("CONCAT([Title], '`s Content')");
 
                     b.Property<string>("ExcludedProp")
                         .IsRequired()
@@ -84,7 +92,9 @@ namespace DevCreedPractical1.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("NVARCHAR(50)")
+                        .HasDefaultValue("Post Name")
                         .HasColumnName("Title");
 
                     b.HasKey("Post_Id")

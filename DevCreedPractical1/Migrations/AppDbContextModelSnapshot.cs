@@ -70,9 +70,17 @@ namespace DevCreedPractical1.Migrations
                     b.Property<int>("Blog_Id")
                         .HasColumnType("int");
 
+                    b.Property<string>("ComputedProp")
+                        .IsRequired()
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("nvarchar(max)")
+                        .HasComputedColumnSql("'title is: ' + [Title] + ', ' + 'content is: ' + [Content]");
+
                     b.Property<string>("Content")
                         .IsRequired()
-                        .HasColumnType("NVARCHAR(500)");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("NVARCHAR(500)")
+                        .HasDefaultValueSql("CONCAT([Title], '`s Content')");
 
                     b.Property<string>("ExcludedProp")
                         .IsRequired()
@@ -81,7 +89,9 @@ namespace DevCreedPractical1.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("NVARCHAR(50)")
+                        .HasDefaultValue("Post Name")
                         .HasColumnName("Title");
 
                     b.HasKey("Post_Id")

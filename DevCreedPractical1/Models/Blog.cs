@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
@@ -14,7 +15,7 @@ namespace DevCreedPractical1.Models
     {
         [Key, Comment("this is the primary key")]
         public int Blog_Id { get; set; }
-        [Required, Column("Blog_Url", TypeName = "NVARCHAR(50)")]
+        [Required, Column("Blog_Url", TypeName = "NVARCHAR(50)"), DefaultValue("example.com")]
         public string Url { get; set; }
         [NotMapped, MaxLength(50)]
         public string ExcludedProp { get; set; }
